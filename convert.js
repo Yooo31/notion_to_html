@@ -42,6 +42,16 @@ function transformToTitle(sentence, titleType, removeCount) {
   return sentence;
 }
 
+function transformToPicture(sentence) {
+  for (var e in sentence) {
+    letter = sentence[e];
+
+    if (letter == ']') {
+        const startSuppr = parseInt(e);
+        sentence = sentence.substring(0, startSuppr);
+    }
+  }
+}
 
 function checkFirstCharacter(sentence) {
   if (sentence[0] == '#' && sentence[1] != '#') {
