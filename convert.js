@@ -58,6 +58,38 @@ function transformToPicture(sentence) {
   return sentence
 }
 
+function hasStrongWord(sentence) {
+  var newSentence = ''
+  var strongStatus = 'ready'
+
+  for (var e in sentence) {
+    e = parseInt(e)
+    ee = e+1
+    letter = sentence[e];
+    nextLetter = sentence[e+1]
+
+    if (letter == '*' && nextLetter == '*') {
+      if (strongStatus == 'ready') {
+        strongStatus = 'first'
+        newSentence += '<strong>'
+      } else if (strongStatus == 'first') {
+        strongStatus = 'ready'
+        newSentence += '</strong> '
+      }
+    } else {
+      if (sentence[e-1] != '*' && sentence[e] == '*' && sentence[e+1] != '*') {
+        newSentence += letter + ' ';
+      } else if (sentence[e-1] != '*') {
+        newSentence += letter;
+      } else if (sentence[e-2] == '*' && strongStatus == 'first') {
+        newSentence += letter;
+      }
+    }
+  }
+
+  return newSentence;
+}
+
 function checkFirstCharacter(sentence) {
   if (sentence[0] == '#' && sentence[1] != '#') {
     sentence = transformToTitle(sentence, 'h2', 2);
@@ -70,7 +102,6 @@ function checkFirstCharacter(sentence) {
   } else {
     sentence = '<p>' + sentence + '</p>';
   }
-
 
   return sentence;
 }
@@ -87,6 +118,7 @@ function convertText(tab) {
   for (var element in tab) {
     sentence = tab[element]
     sentence = checkWhiteSpace(sentence);
+    sentence = hasStrongWord(sentence);
     sentence = isLineBreak(sentence)
     console.log(sentence);
   }
