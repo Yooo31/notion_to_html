@@ -30,7 +30,25 @@ function checkWhiteSpace(sentence) {
 }
 
 
+function checkFirstCharacter(sentence) {
+  if (sentence[0] == '#' && sentence[1] != '#') {
+    sentence = sentence.substring(2);
+    sentence = '<h2 class="title">' + sentence + '</h2>';
+  } else if (sentence[0] && sentence[1] == '#' && sentence[2] != '#') {
+    sentence = sentence.substring(3);
+    sentence = '<h2 class="title">' + sentence + '</h2>';
+  } else if (sentence[0] && sentence[1] && sentence[2] == '#' && sentence[3] != '#') {
+    sentence = sentence.substring(4);
+    sentence = '<h3 class="title">' + sentence + '</h3>';
+  } else if (sentence[0] == '!' && sentence[1] == '[') {
+    sentence = transformToPicture(sentence);
+  } else {
+    sentence = '<p>' + sentence + '</p>';
+  }
 
+
+  return sentence;
+}
 
 function convertText(tab) {
   for (var element in tab) {
