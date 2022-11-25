@@ -52,6 +52,9 @@ function transformToPicture(sentence) {
     }
   }
 
+  sentence = removeCharactere(sentence, 2);
+  sentence = '<img data-src="/public/images/blog/dossier/' + sentence + '" alt="' + sentence + '" class="lazy d-block m-auto mt-5 mb-2">';
+
   return sentence
 }
 
@@ -72,11 +75,19 @@ function checkFirstCharacter(sentence) {
   return sentence;
 }
 
+function isLineBreak(sentence) {
+  if (sentence != '') {
+    sentence = checkFirstCharacter(sentence)
+  }
+
+  return sentence;
+}
+
 function convertText(tab) {
   for (var element in tab) {
     sentence = tab[element]
     sentence = checkWhiteSpace(sentence);
-    sentence = checkFirstCharacter(sentence)
+    sentence = isLineBreak(sentence)
     console.log(sentence);
   }
 }
