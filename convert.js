@@ -63,22 +63,22 @@ function hasStrongWord(sentence) {
   var strongStatus = 'ready'
 
   for (var e in sentence) {
-    e = parseInt(e)
-    ee = e+1
+    e = parseInt(e);
     letter = sentence[e];
     nextLetter = sentence[e+1]
 
     if (letter == '*' && nextLetter == '*') {
       if (strongStatus == 'ready') {
-        strongStatus = 'first'
-        newSentence += '<strong>'
+        strongStatus = 'first';
+        newSentence += '<strong>';
       } else if (strongStatus == 'first') {
-        strongStatus = 'ready'
-        newSentence += '</strong> '
+        strongStatus = 'ready';
+        newSentence += '</strong>' + sentence[e+2];
       }
     } else {
       if (sentence[e-1] != '*' && sentence[e] == '*' && sentence[e+1] != '*') {
-        newSentence += letter + ' ';
+        var add = letter + sentence[e+1];
+        newSentence += add;
       } else if (sentence[e-1] != '*') {
         newSentence += letter;
       } else if (sentence[e-2] == '*' && strongStatus == 'first') {
