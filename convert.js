@@ -13,3 +13,13 @@ function getresult() {
 
   convertText(tab);
 }
+
+
+function convertText(tab) {
+  for (var element in tab) {
+    sentence = tab[element]
+    sentence = checkWhiteSpace(sentence);
+    sentence = checkFirstCharacter(sentence)
+    console.log(sentence);
+  }
+}
