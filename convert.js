@@ -35,17 +35,21 @@ function checkWhiteSpace(sentence) {
   return sentence;
 }
 
+function transformToTitle(sentence, titleType, removeCount) {
+  sentence = sentence.substring(removeCount);
+  sentence = '<' + titleType + ' class="title">' + sentence + '</' + titleType + '>';
+
+  return sentence;
+}
+
 
 function checkFirstCharacter(sentence) {
   if (sentence[0] == '#' && sentence[1] != '#') {
-    sentence = sentence.substring(2);
-    sentence = '<h2 class="title">' + sentence + '</h2>';
+    transformToTitle(sentence, 'h2', 2);
   } else if (sentence[0] && sentence[1] == '#' && sentence[2] != '#') {
-    sentence = sentence.substring(3);
-    sentence = '<h2 class="title">' + sentence + '</h2>';
+    transformToTitle(sentence, 'h2', 3);
   } else if (sentence[0] && sentence[1] && sentence[2] == '#' && sentence[3] != '#') {
-    sentence = sentence.substring(4);
-    sentence = '<h3 class="title">' + sentence + '</h3>';
+    transformToTitle(sentence, 'h3', 4);
   } else if (sentence[0] == '!' && sentence[1] == '[') {
     sentence = transformToPicture(sentence);
   } else {
