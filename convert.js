@@ -14,6 +14,23 @@ function getresult() {
   convertText(tab);
 }
 
+function checkWhiteSpace(sentence) {
+  var whiteSpace = true;
+
+  while (whiteSpace) {
+    if (sentence[0] == ' ') {
+      sentence = removeCharactere(sentence, 1);
+
+    } else {
+      whiteSpace = false;
+    }
+  }
+
+  return sentence;
+}
+
+
+
 
 function convertText(tab) {
   for (var element in tab) {
