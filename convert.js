@@ -14,6 +14,12 @@ function getresult() {
   convertText(tab);
 }
 
+function removeCharactere(sentence, count) {
+  sentence = sentence.substring(count);
+
+  return sentence;
+}
+
 function checkWhiteSpace(sentence) {
   var whiteSpace = true;
 
