@@ -1,6 +1,6 @@
 var originalText, HTMLlist, breakOriginalText, lineBuild, rowCount, tab;
 
-function getresult() {
+function getResult() {
   tab = [];
   originalText = document.getElementById('originalContent').value;
   breakOriginalText = originalText.split("\n");
@@ -51,15 +51,17 @@ function transformToPicture(sentence) {
         sentence = sentence.substring(0, startSuppr);
     }
   }
+
+  return sentence
 }
 
 function checkFirstCharacter(sentence) {
   if (sentence[0] == '#' && sentence[1] != '#') {
-    transformToTitle(sentence, 'h2', 2);
+    sentence = transformToTitle(sentence, 'h2', 2);
   } else if (sentence[0] && sentence[1] == '#' && sentence[2] != '#') {
-    transformToTitle(sentence, 'h2', 3);
+    sentence = transformToTitle(sentence, 'h2', 3);
   } else if (sentence[0] && sentence[1] && sentence[2] == '#' && sentence[3] != '#') {
-    transformToTitle(sentence, 'h3', 4);
+    sentence = transformToTitle(sentence, 'h3', 4);
   } else if (sentence[0] == '!' && sentence[1] == '[') {
     sentence = transformToPicture(sentence);
   } else {
